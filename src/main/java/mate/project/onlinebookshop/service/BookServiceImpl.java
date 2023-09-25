@@ -1,6 +1,6 @@
 package mate.project.onlinebookshop.service;
 
-import mate.bookshop.model.Book;
+import mate.project.onlinebookshop.model.Book;
 import org.springframework.stereotype.Service;
 
 @Service

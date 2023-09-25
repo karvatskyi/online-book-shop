@@ -1,8 +1,9 @@
 package mate.project.onlinebookshop.repository;
 
-import mate.bookshop.model.Book;
+import mate.project.onlinebookshop.model.Book;
 
 public interface BookRepository {
     Book save(Book book);
+
     Book findAll();
 }
