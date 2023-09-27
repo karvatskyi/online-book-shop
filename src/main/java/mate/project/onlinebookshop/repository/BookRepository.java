@@ -1,9 +1,13 @@
 package mate.project.onlinebookshop.repository;
 
+import java.util.List;
+import java.util.Optional;
 import mate.project.onlinebookshop.model.Book;
 
 public interface BookRepository {
     Book save(Book book);
 
-    Book findAll();
+    List<Book> findAll();
+
+    Optional<Book> findBookById(Long id);
 }
