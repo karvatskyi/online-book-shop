@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.project.onlinebookshop.dto.BookDto;
 import mate.project.onlinebookshop.dto.CreateBookRequestDto;
+import mate.project.onlinebookshop.exception.DataProcessingException;
 import mate.project.onlinebookshop.exception.EntityNotFoundException;
 import mate.project.onlinebookshop.mapper.BookMapper;
 import mate.project.onlinebookshop.model.Book;
@@ -19,7 +20,7 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
 
     @Override
-    public BookDto save(CreateBookRequestDto requestDto) {
+    public BookDto save(CreateBookRequestDto requestDto) throws DataProcessingException {
         Book book = bookMapper.toModel(requestDto);
         Book savedBook = bookRepository.save(book);
         return bookMapper.toDto(savedBook);
@@ -40,4 +41,3 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDto(book);
     }
 }
-

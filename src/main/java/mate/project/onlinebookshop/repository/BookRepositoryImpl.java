@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import mate.project.onlinebookshop.exception.DataProcessingException;
 import mate.project.onlinebookshop.model.Book;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,7 @@ public class BookRepositoryImpl implements BookRepository {
     private final EntityManagerFactory entityManagerFactory;
 
     @Override
-    public Book save(Book book) {
+    public Book save(Book book) throws DataProcessingException {
         EntityTransaction transaction = null;
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             transaction = entityManager.getTransaction();
@@ -28,7 +29,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save book: " + book + "to DB", e);
+            throw new DataProcessingException("Can't save book: " + book + "to DB", e);
         }
     }
 
